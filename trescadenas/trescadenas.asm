@@ -12,32 +12,45 @@ section .text
 
 _start:
     mov EAX,msj1                        ; mueve el mensaje a EAX
-    call strlen                         ; llama a strlen
-    mov EDX,EAX                         ; mueve la longitud (en EAX) a EDX
-    mov ECX,msj1                        ; mueve el mensaje
-    mov EBX,1                           ; stdout
-    mov EAX,4                           ; sys_write
-    int 80h                             ; llamada al kernel
+    call sprint                         ; imprime la cadena
 
     mov EAX,msj2                        ; mueve el mensaje a EAX
-    call strlen                         ; llama a strlen
-    mov EDX,EAX                         ; mueve la longitud (en EAX) a EDX
-    mov ECX,msj2                        ; mueve el mensaje
-    mov EBX,1                           ; stdout
-    mov EAX,4                           ; sys_write
-    int 80h                             ; llamada al kernel
+    call sprint                         ; imprime la cadena
 
     mov EAX,msj3                        ; mueve el mensaje a EAX
-    call strlen                         ; llama a strlen
-    mov EDX,EAX                         ; mueve la longitud (en EAX) a EDX
-    mov ECX,msj3                        ; mueve el mensaje
+    call sprint                         ; imprime la cadena
+
+    call exit
+
+;------------------------------------------
+; Funcion String Print (sprint)
+; Recibe direccion de cadena en EAX
+;------------------------------------------
+
+sprint:
+    push EDX                            ;------------------------------------------
+    push ECX                            ; Guardamos los valores de estas direcciones
+    push EBX                            ; en memoria para poder usarlas en la función
+    push EAX                            ;------------------------------------------
+    call strlen                         ; Llama a la función strlen para obtener la longitud de la cadena
+    
+    mov EDX,EAX                         ; Mueve la longitud a EDX
+    pop EAX                             ; La cadena anteriormente guardada en EAX es recuperada del stack
+    mov ECX,EAX                         ; Se mueve la cadena a EAX
     mov EBX,1                           ; stdout
     mov EAX,4                           ; sys_write
     int 80h                             ; llamada al kernel
 
-    mov EBX,0                           ; sale con 0
-    mov EAX,1                           ; sys_exit
-    int 80h                             ; llamada al kernel
+    pop EBX                             ;------------------------------------------
+    pop ECX                             ; Devuelven los valores en el stack a estas direcciones
+    pop EDX                             ;------------------------------------------
+    ret                                 ; Vuelve al punto donde llamaron a sprint
+
+;------------------------------------------
+; Funcion String Length (strlen)
+; Calcula la longitud de una cadena
+; Recibe en EAX
+;------------------------------------------
 
 strlen:
     push EBX                            ; salvamos el valor de EBX
@@ -53,3 +66,13 @@ finalizar:
     sub EAX,EBX                         ; restamos al valor inicial EBX
     pop EBX                             ; establecer EBX
     ret                                 ; regresa al punto en cual llamaron a strlen
+
+;------------------------------------------
+; Función exit
+; Sale del programa
+;------------------------------------------
+
+exit:
+    mov EBX,0                           ; sale con 0
+    mov EAX,1                           ; sys_exit
+    int 80h                             ; llamada al kernel
