@@ -7,16 +7,12 @@ section .data
   cadena1	DB "789",0x0	; cadena de numeros
   numero2	DD 888		; numero entero
 
-section .bss
-  sum resb 4			; reservamos 4 bytes
-
 section .text
   GLOBAL _start			; punto de entrada
 
 _start:
   mov EAX,[cadena1]		; cadena a convertir
   call atoi			; convertir a entero
-  ;mov sum,EAX
   mov EBX,[numero1]		; guardamos en suma el numero
   add EAX,EBX			; sumamos sum y numero1
   mov EBX,[numero2]		; sumamos sum y numero2
