@@ -16,6 +16,6 @@ ciclo:
   dec ecx		; restamos 1 al numero de argumentos
   cmp ecx,0		; checamos si es el ultimo argumento
   jnz ciclo		; repetir si no es el ultimo argumento
-			; si es el ultimo...
+				; si es el ultimo...
   call quit		; salir
 
