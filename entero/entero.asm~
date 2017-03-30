@@ -1,5 +1,5 @@
 ; entero.asm
-%include '../funciones.asm'
+%include 'funciones.asm'
 section .data
     numero DD 543       ; numero entero
 

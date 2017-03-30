@@ -2,7 +2,7 @@
 ; autor: Germán Alberto Verdugo
 ; fecha: 08/Marzo/2017
 
-%include '../funciones.asm'
+%include 'funciones.asm'
 
 section .data
     msj1 db "¡Hola mundo!",0xA,0x0      ; primer mensaje

@@ -1,6 +1,6 @@
 ; suma_variables.asm
 
-%include '../funciones.asm'
+%include 'funciones.asm'
 
 section .data
 	numero1	DD 543		; numero entero

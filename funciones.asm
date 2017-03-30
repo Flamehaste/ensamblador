@@ -150,6 +150,21 @@ atoi:
 	pop ebx
 	ret
 
+; ftoc.asm
+; recibe grados fahrenheit en EAX
+; regresa grados en EAX
+ftoc:
+	sub EAX, 32		; 20h o 0x20
+	imul EAX, 5		; multiplicar por 5
+	push EDX		; guardamos el valor de EDX en el stack
+	mov EDX, 0		; movemos 0 a EDX
+	push EBX		; guardamos EBX en el stack
+	mov EBX, 9		; movemos 9 a EBX
+	div EBX			; dividimos entre EBX
+	pop EBX
+	pop EDX
+	ret
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; sequence to exit the program   ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

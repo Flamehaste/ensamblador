@@ -2,7 +2,7 @@
 ; Autor: German Alberto Verdugo Arambula
 ; Fecha: 28/03/17
 
-%include 'funciones.asm'
+%include '../funciones.asm'
 
 section .data
 	neam DB "No hay suficientes argumentos", 0x0
