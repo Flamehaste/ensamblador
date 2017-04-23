@@ -150,7 +150,7 @@ atoi:
 	pop ebx
 	ret
 
-; ftoc.asm
+; ftoc
 ; recibe grados fahrenheit en EAX
 ; regresa grados en EAX
 ftoc:
@@ -163,6 +163,21 @@ ftoc:
 	div EBX			; dividimos entre EBX
 	pop EBX
 	pop EDX
+	ret
+
+; ctof
+; recibe grados centigrados en EAX
+; regresa grados en EAX
+ctof:
+	imul EAX, 9		; multiplicar el valor por 9
+	push EDX		; guardamos el valor de EDX en el stack
+	mov EDX, 0		; movemos 0 a EDX
+	push EBX		; guardamos el valor de EBX en el stack
+	mov EBX, 5		; movemos 5 a EBX
+	div EBX			; dividimos entre EBX
+	pop EBX
+	pop EDX
+	add EAX, 32		; sumamos 32 a EBX
 	ret
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

@@ -1,13 +1,13 @@
 ; ftoc.asm
-; Convierte el argumento dado de fahrenheit a centigrados
+; Convierte el argumento dado de Centigrados a Fahrenheit
 ; Autor: Germán Alberto Verdugo Arámbula
-; Fecha: 30/03/17
+; Fecha: 04/04/17
 
 %include '../funciones.asm'
 
 section .data
 	neam DB "No hay suficientes argumentos", 0x0
-	msg DB " °C", 0x0
+	msg DB " °F", 0x0
 
 section .text
 	GLOBAL _start
@@ -19,7 +19,7 @@ _start:
 	pop EAX			; No necesitamos el nombre del archivo, lo sacamos del stack
 	pop EAX			; Obtenemos el valor en fahrenheit que se quiere convertir
 	call atoi		; Convertimos el valor a entero
-	call ftoc		; Llamamos a la funcion ftoc para convertirlo
+	call ctof		; Llamamos a la funcion ftoc para convertirlo
 	call iprint		; Imprimimos el resultado
 	mov EAX, msg 	; Movemos la unidad de medida a EAX
 	call sprintLF	; imprimimos la unidad de medida
