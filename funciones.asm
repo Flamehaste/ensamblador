@@ -180,6 +180,37 @@ ctof:
 	add EAX, 32		; sumamos 32 a EBX
 	ret
 
+; stringcopy
+; copia un string de una variable a otra
+
+stringcopy:
+	push ECX		; salvamos ECX en el stack
+	push EBX
+	mov EBX, 0
+	mov ECX, 0		; ECX a 0
+	mov EBX, EAX	; copiamos la direccion
+
+.sigcar:
+	mov BL, byte[EAX]
+	mov byte[ESI+ECX], BL
+	cmp byte[EAX], 0
+
+	jz .finalizar
+	inc EAX
+	inc ECX
+	jmp .sigcar
+
+.finalizar:
+	pop EBX
+	pop ECX		; reestablecer ECX
+	ret 		; regresar al punto de llamada
+
+LeerTexto:
+	mov EAX, sys_read
+	mov EBX, stdin
+	int 0x80
+	ret
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; sequence to exit the program   ;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
