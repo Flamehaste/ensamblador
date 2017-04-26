@@ -5,12 +5,12 @@
 %include 'funciones.asm'
 
 section .data
-	menu DB "**MENU**", 0xA, "1.Capturar Nombre", 0xA, "2.Capturar Edad", 0xA,"3.Imprimir", 0xA,"0.Salir", 0xA,"> ", 0x0
+	menu DB "**MENU**", 0xA, "1.Capturar Nombre", 0xA, "2.Capturar Edad", 0xA,"3.Imprimir", 0xA,"4.Salir", 0xA,"> ", 0x0
 	intn DB "Introduzca su nombre: ", 0x0
 	inte DB "Introduzca su edad: ", 0x0
 
 segment .bss
-	buffer_opcion resb 3
+	buffer_opcion resb 20
 	buffer_opcion_lon equ $-buffer_opcion
 
 	buffer_nombre resb 20
@@ -45,7 +45,7 @@ _start:
 	cmp EAX, 3									; Si es 3
 	je imprimir									; Saltar a imprimir
 
-	cmp EAX, 0									; Si es 4
+	cmp EAX, 4									; Si es 4
 	je quit										; Saltar a salir
 
 	jmp _start 									; Si llego aqui, es que no es igual a ninguna opcion
