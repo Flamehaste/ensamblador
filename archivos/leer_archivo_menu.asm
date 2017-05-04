@@ -5,10 +5,6 @@
 %include '../funciones.asm'
 
 section .data
-	sys_open	equ 	5
-	sys_close	equ		6
-	O_RDONLY	equ		0
-
 	menu DB "**MENU**", 0xA, "1.Leer archivo", 0xA, "2.Mostrar Archivo", 0xA, "3.Salir", 0xA, ">", 0x0
 	msgna DB "Introduzca el nombre del archivo: ", 0x0
 

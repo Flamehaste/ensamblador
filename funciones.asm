@@ -6,6 +6,10 @@ sys_write		equ 4
 stdin			equ 0
 stdout			equ 1
 stderr			equ 3
+sys_open		equ 5
+sys_close		equ	6
+O_RDONLY		equ	0
+O_RDWR			equ 1
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

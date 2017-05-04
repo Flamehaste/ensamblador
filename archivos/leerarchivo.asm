@@ -4,11 +4,6 @@
 
 %include '../funciones.asm'
 
-section .data
-	sys_open	equ 	5
-	sys_close	equ		6
-	O_RDONLY	equ		0
-
 segment .bss
 	buffer resb 2048
 	len equ $-buffer
